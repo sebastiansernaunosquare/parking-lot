@@ -1,0 +1,106 @@
+<app-header />
+
+<div class="container mt-4">
+  @if (alertSignal(); as alert) {
+  <div
+    class="alert alert-dismissible fade show mb-4"
+    [ngClass]="'alert-' + alert.type"
+    role="alert"
+  >
+    <i
+      class="bi me-2"
+      [ngClass]="alert.type === 'success' ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill'"
+    >
+    </i>
+
+    <strong>{{ alert.type === 'success' ? 'Success!' : 'Error!' }}</strong>
+    {{ alert.message }}
+
+    <button
+      type="button"
+      class="btn-close"
+      (click)="closeAlert()"
+      aria-label="Close"
+    ></button>
+  </div>
+  }
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Dashboard</h2>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="card shadow-sm border-start border-4 border-primary h-100">
+        <div class="card-body">
+          <h6 class="text-muted text-uppercase mb-2">Raffle status</h6>
+
+          @let activeRaffle = activeRaffle$ | async; @if(activeRaffle; as
+          raffle) {
+          <h3 class="mb-2 text-primary fw-bold">{{ raffle.status }}</h3>
+
+          <div class="d-flex justify-content-between align-items-end mt-3">
+            <div class="d-flex gap-3">
+              <div>
+                <span class="d-block small text-muted">Period:</span>
+                <span class="fw-bold">{{ raffle.period }}</span>
+              </div>
+
+              <div class="border-start ps-3">
+                <span class="d-block small text-muted">Spots:</span>
+                <span class="fw-bold text-dark">{{ raffle.totalSpots }}</span>
+              </div>
+            </div>
+
+            <button
+              class="btn btn-sm btn-primary shadow-sm"
+              (click)="runRaffle()"
+            >
+              <i class="bi bi-shuffle me-1"></i> Run Now
+            </button>
+          </div>
+
+          } @else {
+          <h3 class="mb-2 text-muted">Closed</h3>
+          <p class="small text-muted mb-3">No active raffle period found.</p>
+          <button
+            class="btn btn-sm btn-outline-primary"
+            (click)="openNewRaffleModal()"
+          >
+            Create New Period
+          </button>
+          <app-raffle-form
+            (raffleCreated)="onRaffleCreated()"
+          ></app-raffle-form>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-header bg-white py-3">
+      <h5 class="mb-0">Residents management</h5>
+    </div>
+
+    @let users = users$ | async;
+
+    <div class="card-body text-center py-5 text-muted">
+      @if (users) {
+      <app-user-table
+        [users]="users"
+        (register)="openCreateModal()"
+        (edit)="openEditModal($event)"
+        (delete)="handleDelete($event)"
+      ></app-user-table>
+      } @else {
+      <p>No users registered yet</p>
+      }
+    </div>
+
+    <app-user-form
+      [userToEdit]="selectedUser()"
+      (saveCompleted)="onUserSaved()"
+    ></app-user-form>
+  </div>
+</div>

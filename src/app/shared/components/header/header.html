@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <a
+      class="navbar-brand fw-bold d-flex align-items-center"
+      [routerLink]="homeRoute()"
+    >
+      Parking lot
+      <span
+        class="badge ms-2 fs-6"
+        [ngClass]="roleBadgeClass()"
+        style="font-size: 0.7em"
+      >
+        {{ roleLabel() }}
+      </span>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarContent"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div
+      class="collapse navbar-collapse justify-content-end"
+      id="navbarContent"
+    >
+      <div class="d-flex align-items-center gap-3">
+        @if (currentUser(); as user) {
+        <div class="text-white text-end d-none d-lg-block">
+          <div class="fw-bold">{{ user.name }}</div>
+          <small class="text-white-50">{{ user.email }}</small>
+        </div>
+
+        <div class="text-white d-lg-none mb-2 mt-2">
+          <small>Logged in as:</small> <br />
+          <strong>{{ user.name }}</strong>
+        </div>
+        }
+
+        <div class="vr text-white mx-2 d-none d-lg-block"></div>
+
+        <button
+          class="btn btn-outline-danger btn-sm d-flex align-items-center"
+          (click)="authService.logout()"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

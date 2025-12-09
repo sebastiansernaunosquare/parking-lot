@@ -1,0 +1,102 @@
+<div
+  class="modal fade"
+  id="residentModal"
+  tabindex="-1"
+  aria-hidden="true"
+  #modalElement
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ isEditMode() ? 'Edit resident' : 'New Resident' }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="onCancel()"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="residentForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label class="form-label">Full name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              [class.is-invalid]="nameControl?.invalid && nameControl?.touched"
+            />
+            <div class="invalid-feedback">
+              @if (nameControl?.hasError('required')) { Full name is required. }
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              formControlName="email"
+              [class.is-invalid]="emailControl?.invalid && emailControl?.touched"
+            />
+            <div class="invalid-feedback">
+              @if (emailControl?.hasError('required')) { Email is required. }
+              @if (emailControl?.hasError('email')) { Invalid email format. }
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Unit</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="unit"
+              [class.is-invalid]="unitControl?.invalid && unitControl?.touched"
+            />
+            <div class="invalid-feedback">
+              @if (unitControl?.hasError('required')) { Unit is required. }
+            </div>
+          </div>
+
+          @if (!isEditMode()) {
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+              [class.is-invalid]="passwordControl?.invalid && passwordControl?.touched"
+            />
+            <div class="invalid-feedback">
+              @if (passwordControl?.hasError('required')) { Password is
+              required. }
+            </div>
+          </div>
+          }
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="residentForm.invalid || isLoading()"
+        >
+          {{ isLoading() ? 'Saving...' : 'Save' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

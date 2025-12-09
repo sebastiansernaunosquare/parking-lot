@@ -1,0 +1,59 @@
+<div class="modal fade" id="raffleModal" tabindex="-1" #modalElement>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Start New Raffle Cycle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="raffleForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label class="form-label">Period Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="period"
+              placeholder="e.g., Q2 2025"
+              [class.is-invalid]="periodControl?.invalid && periodControl?.touched"
+            />
+            <div class="invalid-feedback">Period name is required.</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Total Parking Spots</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="totalSpots"
+              placeholder="e.g., 10"
+              [class.is-invalid]="spotsControl?.invalid && spotsControl?.touched"
+            />
+            <div class="invalid-feedback">Must be at least 1 spot.</div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onSubmit()"
+          [disabled]="raffleForm.invalid || isLoading()"
+        >
+          @if (isLoading()) {
+          <span class="spinner-border spinner-border-sm me-1"></span>
+          Creating... } @else { Start Raffle }
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
