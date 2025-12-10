@@ -126,12 +126,14 @@ Open your browser to: http://localhost:4200
 🔑 Test Credentials
 
 The db.json file comes pre-populated with these users for testing
-Role,Email,Password,Access
-Administrator,admin@edificio.com,123,Full access to Dashboard & Raffle controls.
-Resident,juan@gmail.com,123,Access to Resident Portal & Registration.
+| Role | Email | Password | Access |
+| :--- | :--- | :--- | :--- |
+| Administrator | `admin@edificio.com` | `123` | Full access to Dashboard & Raffle controls. |
+| Resident | `juan@gmail.com` | `123` | Access to Resident Portal & Registration. |
 
 📂 Project Structure
 
+```
 src/
 ├── app/
 │ ├── core/ # Global Services & Models
@@ -152,3 +154,4 @@ src/
 │ └── components/ # Header (Dynamic Navbar)
 │
 └── db.json # The Mock Database
+```
