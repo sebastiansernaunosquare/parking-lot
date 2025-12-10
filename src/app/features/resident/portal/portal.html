@@ -81,6 +81,10 @@
           <span class="badge bg-success py-2 px-3">
             <i class="bi bi-trophy-fill me-1"></i> You won a spot!
           </span>
+          } @else if (!reg.isWinner && !activeRaffle()) {
+          <span class="badge bg-danger py-2 px-3">
+            <i class="bi bi-exclamation-octagon-fill me-1"></i> You did not win a spot!
+          </span>
           } @else {
           <span class="badge bg-secondary"> Not assigned </span>
           }

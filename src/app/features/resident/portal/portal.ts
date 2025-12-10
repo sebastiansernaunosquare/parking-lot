@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {
   RaffleService,
   RegistrationWithRaffle,
@@ -14,7 +14,7 @@ import { Header } from '../../../shared/components/header/header';
   templateUrl: './portal.html',
   styleUrl: './portal.css',
 })
-export class Portal {
+export class Portal implements OnInit {
   private raffleService = inject(RaffleService);
   private authService = inject(Auth);
 

@@ -20,6 +20,5 @@ export class UserTable {
     resident: 'bg-success-subtle text-success border-success',
   };
 
-  // Clase por defecto si el rol no coincide (opcional)
   readonly defaultBadge = 'bg-secondary-subtle text-secondary';
 }

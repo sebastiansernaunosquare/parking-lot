@@ -13,7 +13,6 @@ export class Auth {
   private _currentUser = signal<User | null>(null);
   readonly currentUser = this._currentUser.asReadonly();
   readonly isAuthenticated = computed(() => !!this._currentUser());
-  readonly isAdmin = computed(() => this._currentUser()?.role === 'admin');
 
   constructor() {
     const storedUser = localStorage.getItem('user_session');

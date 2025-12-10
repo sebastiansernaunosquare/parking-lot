@@ -21,7 +21,7 @@
       </div>
 
       <div class="modal-body">
-        <form [formGroup]="residentForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="residentForm">
           <div class="mb-3">
             <label class="form-label">Full name</label>
             <input
@@ -91,6 +91,7 @@
         </button>
         <button
           type="submit"
+          (click)="onSubmit()"
           class="btn btn-primary"
           [disabled]="residentForm.invalid || isLoading()"
         >

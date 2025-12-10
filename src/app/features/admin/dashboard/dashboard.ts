@@ -43,7 +43,6 @@ export class Dashboard implements OnInit {
 
   openEditModal(user: User) {
     this.selectedUser.set(user);
-    // Usamos setTimeout pequeño para asegurar que Angular detecte el cambio de input antes de abrir
     setTimeout(() => this.formComponent()?.openModal(), 0);
   }
 

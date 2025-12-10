@@ -79,6 +79,7 @@ export class UserForm implements OnChanges, AfterViewInit {
   }
 
   onSubmit() {
+      console.log('hello');
     if (this.residentForm.invalid) return;
 
     this.isLoading.set(true);

@@ -67,7 +67,7 @@
       "id": "c86a",
       "period": "Q1 2025",
       "totalSpots": 3,
-      "status": "OPEN"
+      "status": "CLOSED"
     }
   ],
   "registrations": [
@@ -91,6 +91,34 @@
       "raffleId": "101",
       "registrationDate": "2025-12-08T21:01:09.860Z",
       "isWinner": true
+    },
+    {
+      "id": "d1f0",
+      "userId": "01b4",
+      "raffleId": "c86a",
+      "registrationDate": "2025-12-10T04:07:41.675Z",
+      "isWinner": true
+    },
+    {
+      "id": "3a2a",
+      "userId": "2",
+      "raffleId": "c86a",
+      "registrationDate": "2025-12-10T04:08:06.778Z",
+      "isWinner": true
+    },
+    {
+      "id": "df10",
+      "userId": "3216",
+      "raffleId": "c86a",
+      "registrationDate": "2025-12-10T04:08:30.798Z",
+      "isWinner": true
+    },
+    {
+      "id": "337c",
+      "userId": "36e0",
+      "raffleId": "c86a",
+      "registrationDate": "2025-12-10T04:08:48.913Z",
+      "isWinner": false
     }
   ]
 }
